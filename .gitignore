@@ -1,0 +1,8 @@
+# Node modules installed from package.json
+node_modules
+
+# Credentials, .env.example is provided
+.env
+
+# Those files are compiled from src/sass
+public/stylesheets

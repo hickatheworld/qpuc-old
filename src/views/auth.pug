@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+	head
+		include head.pug
+		link(rel="stylesheet", href="/static/stylesheets/auth.css")
+	body
+		form#qpuc-login-form(action='/admin/auth', method='POST')
+			img#qpuc-login-form-logo(src='/static/img/logo.png', alt='QPUC')
+			#qpuc-login-form-title Connexion au PA
+			if incorrect 
+				#qpuc-login-form-invalid Nom d'utilisateur ou mot de passe incorrect.
+			#qpuc-login-form-inputs
+				input#qpuc-login-form-inputs--username(name='username', placeholder='Nom d\'utilisateur', autocomplete='off', value=username || '')
+				input#qpuc-login-form-inputs--password(name='password', type='password', placeholder='Mot de passe', required)
+				input#qpuc-login-form-inputs--submit(type='submit', value='Se connecter')

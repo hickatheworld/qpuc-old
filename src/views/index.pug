@@ -1,0 +1,12 @@
+doctype html
+html(lang="en")
+	head
+		include head.pug
+		link(rel="stylesheet", href="/static/stylesheets/index.css")
+		script(src='/static/script/index.js', defer)
+
+	body
+		#qpuc-index-container
+			img#qpuc-logo(src='/static/img/logo.png', alt='QPUC')
+			button#qpuc-join(hidden = !gameOpen ? '' : null) Rejoindre le jeu
+			div#qpuc-no-game(hidden = gameOpen ? '' : null) Le jeu n'est pas ouvert pour le moment.

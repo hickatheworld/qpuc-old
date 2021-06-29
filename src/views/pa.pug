@@ -1,0 +1,44 @@
+doctype html
+html(lang="en")
+	head
+		include head.pug
+		link(rel="stylesheet", href="/static/stylesheets/pa.css")
+		script const _game = '!{game}';
+		script(src='/static/script/pa.js', defer)
+	body
+		unless error
+			#pa-title QPUC • PA
+			#pa-container
+				.pa-section#game-manager
+					.pa-section-title Gestion du jeu
+					button#game-switcher #{game.open ? 'Fermer le jeu' : 'Ouvrir le jeu'}
+				.pa-section#question-manager
+					.pa-section-title Gestionnaire de questions
+					#questions-container
+						each q in questions
+							.question(id=`q${q.ID}`)
+								.question-delete-btn ×
+								.question-id #{q.ID}
+								.question-texts
+									.question-statement #{q.STATEMENT}
+									.question-answer #{q.ANSWER}
+					#question-editor
+						#question-editor-left
+							input#question-statement-composer(type='text', placeholder="Question")
+							input#question-answer-composer(type='text', placeholder="Réponse")
+						#question-editor-right
+							select#question-collection-selector
+								option(value='NO_COLLECTION') Aucune collection
+								each collection in collections
+									option(value=`${collection.ID}`) #{collection.NAME}
+							button#send-question Valider
+				.pa-section
+					.pa-section-title Gestionnaire de collections
+					#collections-container
+						each collection in collections
+							.collection(id=`${collection.id}`)
+								.collection-id #{collection.id}
+								input.collection-name(type='text',value=`${collection.id}`)
+								.collection-delete-btn ×
+		else
+			#error-container Une erreur s'est produite en chargeant le PA. Essayez de rafraichir la page.
